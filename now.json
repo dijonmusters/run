@@ -1,0 +1,5 @@
+{
+  "env": {
+    "FAUNADB_URL": "@faunadb_url"
+  }
+}

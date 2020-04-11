@@ -1,3 +1,5 @@
-import addRun from './addRun'
+import { addRun } from '../_db'
 
-export { addRun }
+const createRun = async (_, { input: run }) => await addRun(run)
+
+export { createRun }

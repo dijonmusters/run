@@ -1,9 +1,10 @@
 import { ApolloServer, gql } from 'apollo-server-micro'
 import { runs } from './_queries/'
-import { addRun } from './_mutations/'
+import { createRun } from './_mutations/'
 
 const typeDefs = gql`
   type Run {
+    id: String
     distance: Int
     time: Int
     pace: Int
@@ -21,7 +22,7 @@ const typeDefs = gql`
     runs: [Run]
   }
   type Mutation {
-    addRun(input: RunInput): Run
+    createRun(input: RunInput): Run
   }
 `
 
@@ -30,7 +31,7 @@ const resolvers = {
     runs,
   },
   Mutation: {
-    addRun,
+    createRun,
   },
 }
 

@@ -21,7 +21,7 @@ const renderRun = ({ id, distance, time }) => (
 const Index = () => {
   const { loading, error, data } = useQuery(ALL_RUNS)
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
+  if (error) return <p>Error</p>
 
   return data.runs.map(renderRun)
 }

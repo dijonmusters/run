@@ -1,29 +1,26 @@
-import { useQuery } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
-
-const ALL_RUNS = gql`
-  query AllRuns {
-    runs {
-      id
-      distance
-      time
-    }
-  }
-`
-
-const renderRun = ({ id, distance, time }) => (
-  <div key={id}>
-    <p>{distance}</p>
-    <p>{time}</p>
-  </div>
-)
+import { useAuth0 } from '../utils/auth0'
 
 const Index = () => {
-  const { loading, error, data } = useQuery(ALL_RUNS)
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!</p>
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
 
-  return data.runs.map(renderRun)
+  return (
+    <div>
+      <h1>Initial Page</h1>
+
+      <div>
+        {!isAuthenticated && (
+          <button onClick={loginWithRedirect}>Log in</button>
+        )}
+
+        {isAuthenticated && (
+          <div>
+            <p>{user && user.nickname}</p>
+            <button onClick={logout}>Log out</button>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
 
 export default Index

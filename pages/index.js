@@ -1,3 +1,3 @@
-const Index = () => <p>Working with next!</p>;
+const Index = () => <p>Working with next!</p>
 
-export default Home;
+export default Index

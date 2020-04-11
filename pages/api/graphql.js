@@ -1,19 +1,36 @@
 import { ApolloServer, gql } from 'apollo-server-micro'
-import { hello, goodbye } from './_queries/'
+import { runs } from './_queries/'
+import { addRun } from './_mutations/'
 
 const typeDefs = gql`
+  type Run {
+    distance: Int
+    time: Int
+    pace: Int
+    elevation: Int
+    imageUrl: String
+  }
+  input RunInput {
+    distance: Int
+    time: Int
+    pace: Int
+    elevation: Int
+    imageUrl: String
+  }
   type Query {
-    hello: String
-    goodbye: String
+    runs: [Run]
+  }
+  type Mutation {
+    addRun(input: RunInput): Run
   }
 `
 
-console.log(hello)
-
 const resolvers = {
   Query: {
-    hello,
-    goodbye,
+    runs,
+  },
+  Mutation: {
+    addRun,
   },
 }
 

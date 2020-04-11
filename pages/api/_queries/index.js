@@ -1,4 +1,3 @@
-import hello from './hello'
-import goodbye from './goodbye'
+import runs from './runs'
 
-export { hello, goodbye }
+export { runs }

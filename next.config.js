@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    AUTH0_DOMAIN: 'dijon.auth0.com',
-    AUTH0_CLIENT_ID: 'm0jkFmvMg7aHVzB3U1bqpT43Y8a7RUlO',
+    AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   },
 }

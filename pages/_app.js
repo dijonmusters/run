@@ -6,12 +6,11 @@ import { Auth0Provider } from '../utils/auth0'
 
 class MyApp extends App {
   render() {
-    const host = typeof window !== 'undefined' ? window.location.host : ''
     const { Component, pageProps, apollo, router } = this.props
-
+    const host = typeof window !== 'undefined' ? window.location.origin : ''
     const onRedirectCallback = (appState) =>
       router.push(appState && appState.targetUrl ? appState.targetUrl : '/')
-    console.log(host)
+
     return (
       <Auth0Provider
         domain={process.env.AUTH0_DOMAIN}

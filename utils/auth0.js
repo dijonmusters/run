@@ -20,13 +20,14 @@ export const Auth0Provider = ({
   const [auth0Client, setAuth0] = React.useState()
   const [loading, setLoading] = React.useState(true)
   const [popupOpen, setPopupOpen] = React.useState(false)
+  const host = typeof window !== 'undefined' ? window.location.origin : ''
 
   React.useEffect(() => {
     const initAuth0 = async () => {
       const auth0FromHook = await createAuth0Client({
         domain,
         client_id: clientId,
-        redirect_uri: redirectUri,
+        redirect_uri: `${host}${redirectUri}`,
       })
       setAuth0(auth0FromHook)
 
@@ -73,6 +74,12 @@ export const Auth0Provider = ({
     setUser(user)
   }
 
+  const handleLogout = (p) =>
+    auth0Client.logout({
+      ...p,
+      returnTo: host,
+    })
+
   return (
     <Auth0Context.Provider
       value={{
@@ -86,7 +93,7 @@ export const Auth0Provider = ({
         loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
         getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
         getTokenWithPopup: (...p) => auth0Client.getTokenWithPopup(...p),
-        logout: (...p) => auth0Client.logout(...p),
+        logout: (...p) => handleLogout(...p),
       }}
     >
       {loading ? <p>Loading...</p> : children}

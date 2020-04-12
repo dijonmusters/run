@@ -7,7 +7,6 @@ import { Auth0Provider } from '../utils/auth0'
 class MyApp extends App {
   render() {
     const { Component, pageProps, apollo, router } = this.props
-    const host = typeof window !== 'undefined' ? window.location.origin : ''
     const onRedirectCallback = (appState) =>
       router.push(appState && appState.targetUrl ? appState.targetUrl : '/')
 
@@ -15,7 +14,7 @@ class MyApp extends App {
       <Auth0Provider
         domain={process.env.AUTH0_DOMAIN}
         clientId={process.env.AUTH0_CLIENT_ID}
-        redirectUri={`${host}/callback`}
+        redirectUri="/callback"
         onRedirectCallback={onRedirectCallback}
       >
         <ApolloProvider client={apollo}>

@@ -1,4 +1,5 @@
 import faunadb, { query as q } from 'faunadb'
+
 const client = new faunadb.Client({ secret: process.env.FAUNADB_URL })
 
 const getAllFromIndex = async (index) => {
@@ -12,7 +13,9 @@ const getAllFromIndex = async (index) => {
   }))
 }
 
-const allRuns = async () => await getAllFromIndex('all_runs')
+const getRunsForUser = async () => {} // TODO: implement this
+
+const allRuns = async (user) => await getRunsForUser('all_runs', user)
 
 const addRun = async (run) => {
   const document = await client.query(

@@ -1,4 +1,3 @@
-import React from 'react'
 import createAuth0Client from '@auth0/auth0-spa-js'
 import { useRouter } from 'next/router'
 
@@ -74,11 +73,13 @@ export const Auth0Provider = ({
     setUser(user)
   }
 
-  const handleLogout = (p) =>
+  const handleLogout = (p) => {
+    localStorage.removeItem('token')
     auth0Client.logout({
       ...p,
       returnTo: host,
     })
+  }
 
   return (
     <Auth0Context.Provider

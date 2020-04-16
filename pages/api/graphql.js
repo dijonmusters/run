@@ -1,6 +1,7 @@
 import { ApolloServer, gql } from 'apollo-server-micro'
-import { runs } from './_queries/'
-import { createRun } from './_mutations/'
+import { runs } from './_queries'
+import { createRun } from './_mutations'
+import { validateJwt } from './_utils/auth0'
 
 const typeDefs = gql`
   type Run {
@@ -35,7 +36,11 @@ const resolvers = {
   },
 }
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: validateJwt,
+})
 
 export const config = {
   api: {
@@ -43,4 +48,6 @@ export const config = {
   },
 }
 
-export default server.createHandler({ path: '/api/graphql' })
+const handler = server.createHandler({ path: '/api/graphql' })
+
+export default handler

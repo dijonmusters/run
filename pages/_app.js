@@ -1,12 +1,12 @@
 import React from 'react'
 import App from 'next/app'
-import { ApolloProvider } from '@apollo/react-hooks'
-import withData from '../utils/apolloClient'
 import { Auth0Provider } from '../utils/auth0'
+import { ApolloProvider } from '@apollo/react-hooks'
+import withApolloClient from '../utils/withApolloClient'
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps, apollo, router } = this.props
+    const { Component, pageProps, router, apollo } = this.props
     const onRedirectCallback = (appState) =>
       router.push(appState && appState.targetUrl ? appState.targetUrl : '/')
 
@@ -25,4 +25,4 @@ class MyApp extends App {
   }
 }
 
-export default withData(MyApp)
+export default withApolloClient(MyApp)

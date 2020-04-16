@@ -1,8 +1,5 @@
 import { allRuns } from '../_db'
 
-const runs = async (_, __, user) => {
-  console.log(user)
-  return await allRuns(user)
-}
+const runs = async (_, __, user) => await allRuns(user)
 
 export { runs }

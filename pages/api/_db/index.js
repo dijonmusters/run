@@ -13,11 +13,23 @@ const getAllFromIndex = async (index) => {
   }))
 }
 
-const getRunsForUser = async () => {} // TODO: implement this
+const getRunsForUser = async (email) => {
+  const { data: documents } = await client.query(
+    q.Map(q.Paginate(q.Match(q.Index('runs_for_user'), email)), (ref) =>
+      q.Get(ref)
+    )
+  )
 
-const allRuns = async (user) => await getRunsForUser('all_runs', user)
+  return documents.map(({ ref, data }) => ({
+    id: ref.id,
+    ...data,
+  }))
+}
 
-const addRun = async (run) => {
+const allRuns = async (user) => await getRunsForUser(user.email)
+
+const addRun = async (runData, user) => {
+  const run = { ...runData, email: user.email }
   const document = await client.query(
     q.Create(q.Collection('run'), { data: run })
   )

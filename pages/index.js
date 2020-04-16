@@ -25,4 +25,5 @@ const Index = () => {
 
 export default Index
 
-// TODO: Add authorization to graphql/fauna
+// TODO: Add form and mutation for creating run
+// TODO: Integrate Strava => migrate to Strava email or id for identification

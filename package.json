@@ -24,6 +24,11 @@
     "next": "9.3.4",
     "next-with-apollo": "^5.0.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "styled-components": "^5.1.0",
+    "styled-normalize": "^8.0.7"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.7"
   }
 }

@@ -25,5 +25,4 @@ const Index = () => {
 
 export default Index
 
-// TODO: Add Styled Components
 // TODO: Add authorization to graphql/fauna

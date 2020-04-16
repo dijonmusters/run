@@ -3,6 +3,8 @@ import App from 'next/app'
 import { Auth0Provider } from '../utils/auth0'
 import { ApolloProvider } from '@apollo/react-hooks'
 import withApolloClient from '../utils/withApolloClient'
+import { Normalize } from 'styled-normalize'
+import GlobalStyles from '../styles/GlobalStyles'
 
 class MyApp extends App {
   render() {
@@ -18,6 +20,8 @@ class MyApp extends App {
         onRedirectCallback={onRedirectCallback}
       >
         <ApolloProvider client={apollo}>
+          <Normalize />
+          <GlobalStyles />
           <Component {...pageProps} router={router} />
         </ApolloProvider>
       </Auth0Provider>

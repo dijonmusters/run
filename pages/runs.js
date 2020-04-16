@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+import styled from 'styled-components'
 
 const ALL_RUNS = gql`
   query AllRuns {
@@ -11,11 +12,15 @@ const ALL_RUNS = gql`
   }
 `
 
+const Run = styled.div`
+  border: 1px solid black;
+`
+
 const renderRun = ({ id, distance, time }) => (
-  <div key={id}>
+  <Run key={id}>
     <p>{distance}</p>
     <p>{time}</p>
-  </div>
+  </Run>
 )
 
 const Runs = () => {

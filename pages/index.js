@@ -25,8 +25,5 @@ const Index = () => {
 
 export default Index
 
-// TODO: Fix auth0 on prod
-// TODO: May need to add auth0 secrets and change redirect
-
 // TODO: Add Styled Components
-// TODO: Add authorization to graphql
+// TODO: Add authorization to graphql/fauna
